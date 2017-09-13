@@ -60,8 +60,14 @@ echo "c.NotebookApp.password = u'"$jupass"'" >> $HOME/.jupyter/jupyter_notebook_
 echo "c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False" >> $HOME/.jupyter/jupyter_notebook_config.py
 
+# create ssl cert for jupyter notebook
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout $HOME/mykey.key -out $HOME/mycert.pem -subj "/C=IE"
+# save startup command
+echo jupyter notebook --certfile=mycert.pem --keyfile mykey.key > $HOME/start-jupyter-notebook
+chmod +x $HOME/start-jupyter-notebook
+
 # clone the fast.ai course repo and prompt to start notebook
 cd ~
 git clone https://github.com/fastai/courses.git
-echo "\"jupyter notebook\" will start Jupyter on port 8888"
+echo "\"./start-jupyter-notebook\" will start Jupyter on port 8888"
 echo "If you get an error instead, try restarting your session so your $PATH is updated"
