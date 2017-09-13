@@ -54,8 +54,8 @@ sudo cp include/* /usr/local/cuda/include/
 
 # configure jupyter and prompt for password
 jupyter notebook --generate-config
-jupass=`python -c "from notebook.auth import passwd; print(passwd())"`
-echo "c.NotebookApp.password = u'"$jupass"'" >> $HOME/.jupyter/jupyter_notebook_config.py
+#jupass=`python -c "from notebook.auth import passwd; print(passwd())"`
+#echo "c.NotebookApp.password = u'"$jupass"'" >> $HOME/.jupyter/jupyter_notebook_config.py
 echo "c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False" >> $HOME/.jupyter/jupyter_notebook_config.py
 
