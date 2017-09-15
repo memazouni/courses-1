@@ -67,6 +67,9 @@ echo jupyter notebook --certfile=$HOME/mycert.pem --keyfile $HOME/mykey.key > $H
 chmod +x $HOME/start-jupyter-notebook
 
 mkdir workspace
+# command for mounting the volume
+echo sudo mount /dev/xvdf1 $HOME/workspace > $HOME/mount-workspace
+chmod +x $HOME/mount-workspace
 
 # clone the fast.ai course repo and prompt to start notebook
 cd ~
