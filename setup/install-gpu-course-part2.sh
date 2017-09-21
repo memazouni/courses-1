@@ -47,6 +47,9 @@ echo '{
     "backend": "tensorflow"
 }' > ~/.keras/keras.json
 
+# install pytorch
+conda install pytorch torchvision cuda80 -c soumith
+
 # configure jupyter and prompt for password
 jupyter notebook --generate-config
 #jupass=`python -c "from notebook.auth import passwd; print(passwd())"`
