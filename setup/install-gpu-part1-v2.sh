@@ -72,7 +72,7 @@ chmod +x $HOME/start-jupyter-notebook
 
 # Install python dependencies for fastai
 conda install opencv tqdm
-pip install isoweek pandas_summary
+pip install isoweek pandas_summary torchtext
 
 # Download the dogs vs cats dataset and extract it into the appropriate folder
 mkdir data
