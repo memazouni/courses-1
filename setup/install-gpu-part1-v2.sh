@@ -9,7 +9,7 @@ sudo apt-get --assume-yes install software-properties-common
 # download and install GPU drivers
 wget "https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb"
 
-sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
 sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 sudo apt-get update
 sudo apt-get -y install cuda
@@ -80,6 +80,8 @@ pip install isoweek pandas_summary
 mkdir data
 wget http://files.fast.ai/data/dogscats.zip
 unzip dogscats.zip -d data/
+
+exec bash
 
 
 # clone a forked fast.ai course repo and prompt to start notebook
