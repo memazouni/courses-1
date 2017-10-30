@@ -31,6 +31,10 @@ conda upgrade -y --all
 wget "http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb"
 sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb
 
+# install tensorflow
+sudo apt-get install libcupti-dev
+conda install tensorflow
+
 # install and configure keras
 pip install git+git://github.com/fchollet/keras.git
 mkdir ~/.keras
