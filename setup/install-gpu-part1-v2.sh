@@ -19,8 +19,6 @@ sudo modprobe nvidia
 nvidia-smi
 
 # install Anaconda for current user
-mkdir downloads
-cd downloads
 wget "https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh"
 bash "Anaconda3-5.0.1-Linux-x86_64.sh" -b
 
@@ -81,11 +79,12 @@ mkdir data
 wget http://files.fast.ai/data/dogscats.zip
 unzip dogscats.zip -d data/
 
-exec bash
-
+# Delete installation files
+rm libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb dogscats.zip install-gpu-part1-v2.sh cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb Anaconda3-5.0.1-Linux-x86_64.sh
 
 # clone a forked fast.ai course repo and prompt to start notebook
 cd ~
 git clone https://github.com/radekosmulski/fastai.git
-echo "\"./start-jupyter-notebook\" will start Jupyter on port 8888"
-echo "If you get an error instead, try restarting your session so your $PATH is updated"
+
+# Start new shell for updates to PATH to take effect
+exec bash
