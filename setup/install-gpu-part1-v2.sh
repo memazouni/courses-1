@@ -86,7 +86,7 @@ unzip dogscats.zip -d data/
 # Delete installation files
 rm libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb dogscats.zip install-gpu-part1-v2.sh cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb Anaconda3-5.0.1-Linux-x86_64.sh
 
-# clone a forked fast.ai course repo and prompt to start notebook
+# clone a forked fast.ai course repo
 cd ~
 git clone https://github.com/radekosmulski/fastai.git
 
