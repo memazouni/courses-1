@@ -3,14 +3,14 @@
 # ensure system is updated and has basic build tools
 sudo apt-get update
 sudo apt-get --assume-yes upgrade
-sudo apt-get --assume-yes install tmux build-essential gcc g++ make binutils
+sudo apt-get --assume-yes install tmux build-essential gcc g++ make binutils unzip
 sudo apt-get --assume-yes install software-properties-common
 
 # download and install GPU drivers
-wget "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb"
+wget "https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb"
 
 sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
-sudo apt-key add /var/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb/7fa2af80.pub
+sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 sudo apt-get update
 sudo apt-get -y install cuda
 sudo apt-get --assume-yes upgrade
@@ -72,8 +72,18 @@ chmod +x $HOME/start-jupyter-notebook
 #echo sudo mount /dev/xvdf1 $HOME/workspace > $HOME/mount-workspace
 #chmod +x $HOME/mount-workspace
 
-# clone the fast.ai course repo and prompt to start notebook
+# Install python dependencies for fastai
+conda install opencv tqdm
+pip install isoweek pandas_summary
+
+# Download the dogs vs cats dataset and extract it into the appropriate folder
+mkdir data
+wget http://files.fast.ai/data/dogscats.zip
+unzip dogscats.zip -d data/
+
+
+# clone a forked fast.ai course repo and prompt to start notebook
 cd ~
-git clone https://github.com/fastai/fastai.git
+git clone https://github.com/radekosmulski/fastai.git
 echo "\"./start-jupyter-notebook\" will start Jupyter on port 8888"
 echo "If you get an error instead, try restarting your session so your $PATH is updated"
