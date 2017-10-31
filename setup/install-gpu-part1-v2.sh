@@ -57,8 +57,6 @@ cd pytorch && python setup.py install && cd ..
 git clone --recursive https://github.com/pytorch/vision.git
 cd vision && python setup.py install && cd ..
 
-#conda install pytorch torchvision -c soumith
-
 # configure jupyter
 jupyter notebook --generate-config
 
