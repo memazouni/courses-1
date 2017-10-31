@@ -32,7 +32,6 @@ wget "http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu
 sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb
 
 # install tensorflow
-sudo apt-get install libcupti-dev
 conda install tensorflow
 
 # install and configure keras
@@ -45,8 +44,20 @@ echo '{
     "backend": "tensorflow"
 }' > ~/.keras/keras.json
 
+# Install python dependencies for fastai
+conda install opencv tqdm
+pip install isoweek pandas_summary
+
 # install pytorch
-conda install pytorch torchvision -c soumith
+export CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" # [anaconda root directory]
+conda install numpy pyyaml mkl setuptools cmake cffi
+git clone --recursive https://github.com/pytorch/pytorch
+cd pytorch && python setup.py install && cd ..
+
+git clone --recursive https://github.com/pytorch/vision.git
+cd vision && python setup.py install && cd ..
+
+#conda install pytorch torchvision -c soumith
 
 # configure jupyter
 jupyter notebook --generate-config
@@ -74,17 +85,13 @@ chmod +x $HOME/start-jupyter-notebook
 #echo sudo mount /dev/xvdf1 $HOME/workspace > $HOME/mount-workspace
 #chmod +x $HOME/mount-workspace
 
-# Install python dependencies for fastai
-conda install opencv tqdm
-pip install isoweek pandas_summary torchtext
-
 # Download the dogs vs cats dataset and extract it into the appropriate folder
 mkdir data
 wget http://files.fast.ai/data/dogscats.zip
 unzip dogscats.zip -d data/
 
 # Delete installation files
-rm libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb dogscats.zip install-gpu-part1-v2.sh cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb Anaconda3-5.0.1-Linux-x86_64.sh
+rm libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb dogscats.zip install-gpu-part1-v2.sh cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb Anaconda3-5.0.1-Linux-x86_64.sh pytorch vision
 
 # clone a forked fast.ai course repo
 cd ~
